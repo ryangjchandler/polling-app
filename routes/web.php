@@ -37,4 +37,10 @@ Route::get('/polls/{poll}', function (Poll $poll) {
     ]);
 })->middleware('auth')->name('polls.show');
 
+Route::get('/vote/{poll}', function (Poll $poll) {
+    return view('vote', [
+        'poll' => $poll,
+    ]);
+});
+
 require __DIR__.'/auth.php';

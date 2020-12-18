@@ -15,6 +15,11 @@ class Poll extends Model
         'expires_at' => 'date',
     ];
 
+    public function userHasVotedFor()
+    {
+        return $this->pollOptions->filter(fn (PollOption $pollOption) => $pollOption->userHasVotedFor())->isNotEmpty();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
