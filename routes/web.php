@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Poll;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,11 @@ Route::get('/polls', function (Request $request) {
 Route::get('/polls/create', function () {
     return view('polls.create');
 })->middleware('auth')->name('polls.create');
+
+Route::get('/polls/{poll}', function (Poll $poll) {
+    return view('polls.show', [
+        'poll' => $poll,
+    ]);
+})->middleware('auth')->name('polls.show');
 
 require __DIR__.'/auth.php';

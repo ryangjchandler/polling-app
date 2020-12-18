@@ -11,8 +11,17 @@ class Poll extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'expires_at' => 'date',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function pollOptions()
+    {
+        return $this->hasMany(PollOption::class);
     }
 }
