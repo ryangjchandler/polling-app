@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/polls', function (Request $request) {
+    return view('polls.index');
+})->middleware('auth')->name('polls.index');
+
+Route::get('/polls/create', function () {
+    return view('polls.create');
+})->middleware('auth')->name('polls.create');
 
 require __DIR__.'/auth.php';
