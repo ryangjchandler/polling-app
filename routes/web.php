@@ -22,7 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/polls', function (Request $request) {
-    return view('polls.index');
+    return view('polls.index', [
+        'polls' => $request->user()->polls->load('pollOptions', 'votes'),
+    ]);
 })->middleware('auth')->name('polls.index');
 
 Route::get('/polls/create', function () {

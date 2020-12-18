@@ -29,4 +29,9 @@ class Poll extends Model
     {
         return $this->hasMany(PollOption::class);
     }
+
+    public function votes()
+    {
+        return $this->hasManyThrough(Vote::class, PollOption::class);
+    }
 }
